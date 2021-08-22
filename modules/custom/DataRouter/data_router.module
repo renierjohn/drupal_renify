@@ -18,6 +18,10 @@ function data_router_form_alter(&$form,&$form_state,&$form_id){
   }
 
   if($form_id == 'devel_admin_settings_form'){}
+
+  if($form_id == 'node_places_form'){
+    $form['status']['widget']['value']['#default_value'] = FALSE;
+  }  
 }
 
 function login_redirect($form,$form_state){
