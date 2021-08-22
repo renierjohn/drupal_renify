@@ -47,9 +47,6 @@ class LoginController extends ControllerBase {
    *   Return Hello string.
    */
   public function verify($token) {
-    $configs = file_get_contents(self::CONFIGS_PATH);
-    $configs = json_decode($configs,TRUE);
-
     $name = $this->account->setToken($token)->checkToken();
      if(empty($name)){
        \Drupal::messenger()->addError('Invalid Link');
@@ -74,7 +71,8 @@ class LoginController extends ControllerBase {
     // $client_secret = self::CLIENT_SECRET;
     // $redirect_uri  = self::REDIRECT_URL;
     // $scope         = self::SCOPE;
-
+    $configs = file_get_contents(self::CONFIGS_PATH);
+    $configs = json_decode($configs,TRUE);
     $uri           = $configs['ENDPOINT'];
     $client_id     = $configs['CLIENT_ID'];
     $client_secret = $configs['CLIENT_SECRET'];
