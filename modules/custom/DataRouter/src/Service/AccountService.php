@@ -208,6 +208,8 @@ class AccountService
     $entity = $this->entityTypeManager;
     $pass   = self::DEFAULT_PASS;
     
+    $profile =  'public://profile/'.$email[0].'.png';
+    
     $file = $entity->getStorage('file');
     $fid  = $file->loadByProperties(['uri' => $profile]);
     $fid  = reset($fid);

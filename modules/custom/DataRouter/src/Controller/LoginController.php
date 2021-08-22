@@ -135,17 +135,6 @@ class LoginController extends ControllerBase {
     $profile = $result['picture'];
     $name    = $result['name'].' '.$result['given_name'];
 
-    // return new JsonResponse(
-    //   [
-    //     'code'   => $code,
-    //     'token'  => $token,
-    //     'result' => $result,
-    //     'email'   => $email,
-    //     'profile' => $profile,
-    //     'name'    => $name,
-    //   ]);
-
-
     $user_result = $account->checkAccount($email);
     if(empty($user_result)){
       $profile = system_retrieve_file($profile, 'public://google', FALSE, FILE_EXISTS_REPLACE);
@@ -162,23 +151,3 @@ class LoginController extends ControllerBase {
   }
 
 }
-    // $content = 
-    // '<html class="no-js" lang="en">
-    //   <head>
-    //     <link rel="manifest" href="manifest.json" />
-    //     <meta name="author" content="Renify">
-    //     <title>Google | Renify</title>
-    //   </head>
-    //   <body>
-    //   <h5>Authenticatings...</h5>
-    //   <input type="hidden" value='.$code.' />
-    //   <script src="/core/assets/vendor/jquery/jquery.min.js?v=3.6.0"></script>
-    //   <script src="/themes/Renify/js/google.js"></script>
-    //  </body>
-    // </html>';
-    // \Drupal::service('page_cache_kill_switch')->trigger();
-    // $response =  new HtmlResponse($content,200,['Cache-Control'=>'no-cache','X-Drupal-Dynamic-Cache'=>'UNCACHEABLE ']);
-    // $response->mustRevalidate();
-    // $response->setMaxAge(0);
-
-    // return $response;
