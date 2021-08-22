@@ -36,3 +36,9 @@ function renify_preprocess_node(&$variables){
   $result = \Drupal::service('data_router.aliases_path')->setID($nid)->getContentPagination();
   $variables['pagination'] = $result;
 }
+
+function renify_preprocess_html(&$variables){
+  if(\Drupal::service('path.matcher')->isFrontPage()){
+    $variables['head_title']['title'] = 'Renify';
+  }
+}
