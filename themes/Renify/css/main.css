@@ -2366,8 +2366,22 @@ input::-moz-focus-inner {
   overflow: none;
 }
 
+
+.user-reset-pass{
+  display: grid;
+  justify-content: center;
+  align-content: space-between;
+  justify-items: center;
+  align-items: center;
+}
+
 @media only screen and (max-width:800px) {
   .overflow{
     overflow: scroll;
   }
+
+  .user-reset-pass{
+    display: block;
+  }
+  
 }
