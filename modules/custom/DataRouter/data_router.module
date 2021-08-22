@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\user\Entity\User;
+use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\views\Views;
 use Drupal\Core\Site\Settings;
@@ -23,12 +24,14 @@ function login_redirect($form,$form_state){
   $input    = $form_state->getUserInput();
   $name     = $input['name'];
   $pass     = $input['pass'];
-  $response = new RedirectResponse('/');
   $user     = \Drupal::service('entity_type.manager')->getStorage('user')->loadByProperties(['name' => $name]);
-  user_login_finalize(array_values($user)[0]);
+  user_login_finalize(reset($user));
+  $url = Url::fromRoute('<front>');
+  $form_state->setRedirectUrl($url);
   \Drupal::messenger()->addMessage('Welcome '.$name);
-  return $response->send();
 }
+
+
 
 function validate_captcha($form,$form_state){
   $input   = $form_state->getUserInput();
@@ -41,6 +44,7 @@ function validate_captcha($form,$form_state){
   if($response == false){
     return $form_state->setErrorByName('captcha','Sorry , Youre Captcha was expired. Please Login again');
   }
+}
 
  function data_router_theme($existing, $type, $theme, $path){
     return [
@@ -49,5 +53,3 @@ function validate_captcha($form,$form_state){
       ],
     ];
  } 
-
-}
