@@ -228,7 +228,9 @@ class AccountService
       'user_picture' => $fid,
       'status'       => TRUE,
     ];
-   return $entity->getStorage('user')->create($fields)->save();
+   $entity->getStorage('user')->create($fields)->save();
+   $user = $entity->getStorage('user')->loadByProperties(['mail'=>$email]);
+   return reset($user);
   }
 
 }
