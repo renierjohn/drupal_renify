@@ -48,7 +48,7 @@ class LoginController extends ControllerBase {
    */
   public function verify($token) {
     $configs = file_get_contents(self::CONFIGS_PATH);
-    $configs = json_decode(configs,TRUE);
+    $configs = json_decode($configs,TRUE);
 
     $name = $this->account->setToken($token)->checkToken();
      if(empty($name)){
