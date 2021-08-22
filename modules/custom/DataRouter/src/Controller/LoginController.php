@@ -22,17 +22,7 @@ class LoginController extends ControllerBase {
 
   protected $client;
 
-  const ENDPOINT = 'https://oauth2.googleapis.com/token';
-
-  const RESPONSE_TYPE = 'token';
-
-  const REDIRECT_URL  = 'https://renify.store/google';
-
-  const CLIENT_SECRET = 'oAAA-lDtg7LqyrsjS5rh5zsq';
-
-  const CLIENT_ID     = '902176944767-2ul1lh81t998833bmnsjah6sg2k9e9p2.apps.googleusercontent.com';
-
-  const SCOPE         = 'https://www.googleapis.com/auth/userinfo.profile.email';
+  const CONFIGS_PATH  = 'private://auth/config.json';
 
   public function __construct(AccountService $account,RequestStack $request,Client $client) {
     $this->account = $account;
@@ -57,6 +47,9 @@ class LoginController extends ControllerBase {
    *   Return Hello string.
    */
   public function verify($token) {
+    $configs = file_get_contents(self::CONFIGS_PATH);
+    $configs = json_decode(configs,TRUE);
+
     $name = $this->account->setToken($token)->checkToken();
      if(empty($name)){
        \Drupal::messenger()->addError('Invalid Link');
@@ -77,12 +70,16 @@ class LoginController extends ControllerBase {
     $result = [];
     $token  = FALSE;
 
-    $uri  = 'https://oauth2.googleapis.com/token';
+    // $client_id     = self::CLIENT_ID;
+    // $client_secret = self::CLIENT_SECRET;
+    // $redirect_uri  = self::REDIRECT_URL;
+    // $scope         = self::SCOPE;
 
-    $client_id     = self::CLIENT_ID;
-    $client_secret = self::CLIENT_SECRET;
-    $redirect_uri  = self::REDIRECT_URL;
-    $scope         = self::SCOPE;
+    $uri           = $configs['ENDPOINT'];
+    $client_id     = $configs['CLIENT_ID'];
+    $client_secret = $configs['CLIENT_SECRET'];
+    $redirect_uri  = $configs['REDIRECT_URL'];
+    $scope         = $configs['SCOPE'];
 
     $data = [
       'code'          => $code,
