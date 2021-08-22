@@ -16,99 +16,7 @@ function data_router_form_alter(&$form,&$form_state,&$form_id){
     $form['#validate'][] = 'validate_captcha';
   }
 
-  if($form_id == 'devel_admin_settings_form'){
-    
-    $method = 'POST';
-    $uri = 'https://oauth2.googleapis.com/token';
-   
-    $code = '4/0AX4XfWiK_sW2ITdbjo5p4yRrrz-wrcWu2_SivGKvETZOHxNTwBA56tGnFhJfAbcTPK7WJA';
-    $client_id ='902176944767-2ul1lh81t998833bmnsjah6sg2k9e9p2.apps.googleusercontent.com';
-    $client_secret = 'oAAA-lDtg7LqyrsjS5rh5zsq';
-    $redirect_uri = 'https://renify.store/google';
-    $scope         = "https://www.googleapis.com/auth/userinfo.profile";
-
-
-
-    // $data = [
-    //   'code'          => $code,
-    //   'client_id'     => $client_id,
-    //   'client_secret' => $client_secret,
-    //   'redirect_uri'  => $redirect_uri,
-    //   'grant_type'    => 'authorization_code',     
-    // ];
-
-    // try {
-    //   $result =  \Drupal::httpClient()->post($uri,[
-    //     'form_params'=> $data,
-    //     'verify'     => TRUE,
-    //     'headers' => [
-    //       'Content-type' => 'application/x-www-form-urlencoded',
-    //     ],
-    //   ]);
-
-    //  ksm($result->getBody()->getContents());
-    // } catch (Exception $e) {
-    //   ksm($e);
-    // }
-
-  // $token = 'ya29.a0ARrdaM-crxNjpOaelvd7S-_Js3CqzlK_QhDed3rPNjmT8LLrKZL_7XtcwUE0NKgTM4GNFAkAOaTuVA5t3HTWKWWfkQrO4rSyyFrKbYujgW3BkshenZAOZKO04OywpSYrxAqcgk6fvOXbFk7FewlixiN7yMeNJA';
-
-  //   try {
-  //    $uri = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token='.$token;
-  //    $result = \Drupal::httpClient()->get($uri);
-  //    $result = $result->getBody()->getContents();
-  //     $result = json_decode($result,TRUE);
-  //     ksm($result);
-  //   } catch (Exception $e) {
-  //     ksm($e);
-  //   }
-
-    $data = [    
-      'email' => 'renify.official@gmail.com',
-      'email_verified' => true,
-      'sub' => '115075258962532186706',
-      'name' => 'renier',
-      'given_name' => 'john',
-      'picture' => 'https://renify.store/sites/default/files/public/thubmnails/oko4.jpg',
-    ];
-
-     // try {
-     //    // $uri     = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token='.$token;
-     //    $result  = \Drupal::httpClient()->get($data['picture']); // get profile info
-     //    $result  = $result->getBody()->getContents();
-     //    $result  = json_decode($result,TRUE);
-     //  }
-     //  catch(ClientException $e){
-     //    $result = $e;
-     //    ksm($result);
-     //  } 
-     //  catch (Exception $e) {
-     //    $result = $e;
-     //    ksm($result);
-     //  }
-
-    // $uri = system_retrieve_file($data['picture'], 'public://google', FALSE, FILE_EXISTS_REPLACE);
-    // ksm($uri);
-    // $user = \Drupal::service('data_router.account')->checkAccount('renify.official@gmail.com');
-    // $user = \Drupal::service('data_router.account')->registerDirect();
-    // ksm($user);
-    // $entity = \Drupal::service('entity_type.manager')->getStorage('file');
-    // $profile = 'public://google/oko4.jpg';
-    // $fid = $entity->loadByProperties(['uri' => $profile]);
-    // $fid = reset($fid);
-    // if(!empty($fid)){
-    //   $fid = $fid->id();
-    // }
-    // if(empty($fid)){
-    //   $fid =  $entity->create(['uri'=>$profile])->save();
-    //   $fid = $entity->loadByProperties(['uri' => $profile]);
-    //   $fid = reset($fid);
-    // }
-
-    // ksm($fid);
-
-    return new RedirectResponse('/',301);
-  }
+  if($form_id == 'devel_admin_settings_form'){}
 }
 
 function login_redirect($form,$form_state){
@@ -140,13 +48,6 @@ function validate_captcha($form,$form_state){
         'variables' => ['data' => NULL],
       ],
     ];
-
-    // return [
-    //     'result' => [
-    //         'template' => 'result',
-    //         'variables' => ['data'=>[]],
-    //     ],
-    // ];
  } 
 
 }
