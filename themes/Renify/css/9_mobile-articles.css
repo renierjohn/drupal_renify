@@ -126,9 +126,9 @@
       font-size: 1.6rem;
       line-height: 1.9;
     }
-    .btn--stroke--reverse{
+    /*.btn--stroke--reverse{
       display: inline;
-    }
+    }*/
     .btn--big{
       padding: 1rem 3rem;
     }

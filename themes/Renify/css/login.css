@@ -31,3 +31,10 @@
   position: relative;
   top: 1rem;
 }
+
+
+@media only screen and (max-width:800px) {
+  .login__left{
+    width: 100%;
+  }
+}
