@@ -6,7 +6,11 @@
       </div>
       <div class="gallery__photos">
         <div class="col-full slick-slider gallery__photos__slide">
-          {{ rows }}
+          {% if rows -%}
+            {% for row in rows %}
+              {{row.content}}
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
     </div>
