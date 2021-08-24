@@ -204,7 +204,7 @@ class AccountService
     return reset($user);
   }
 
-  public function registerDirect($name,$email,$profile){
+  public function registerDirect($name,$email){
     $entity = $this->entityTypeManager;
     $pass   = self::DEFAULT_PASS;
     

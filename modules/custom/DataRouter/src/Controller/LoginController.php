@@ -137,8 +137,8 @@ class LoginController extends ControllerBase {
 
     $user_result = $account->checkAccount($email);
     if(empty($user_result)){
-      $profile = system_retrieve_file($profile, 'public://google', FALSE, FILE_EXISTS_REPLACE);
-      $user    = $account->registerDirect($name,$email,$profile);
+      // $profile = system_retrieve_file($profile, 'public://google', FALSE, FILE_EXISTS_REPLACE);
+      $user    = $account->registerDirect($name,$email);
       user_login_finalize($user);
       \Drupal::messenger()->addMessage('Success . Welcome '.$email);
       return new RedirectResponse('/');
