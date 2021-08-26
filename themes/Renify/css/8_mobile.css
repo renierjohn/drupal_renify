@@ -226,6 +226,11 @@
 }
 
 @media only screen and (max-width:900px) {
+  
+  .block-1-3 .col-block{
+    width: 50%;
+  }
+
   .header-nav-wrap {
     text-align: right;
   }

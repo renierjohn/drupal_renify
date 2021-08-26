@@ -178,6 +178,7 @@
 
         $('.gallery__photos__slide').slick({
             arrows: false,
+            centerMode: true,
             dots: true,
             infinite: true,
             slidesToShow: 4,
@@ -188,6 +189,20 @@
                 {
                     breakpoint: 1001,
                     settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 801,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 601,
+                    settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1
                     }
@@ -196,12 +211,14 @@
         });
         $('.map__photos__slide').slick({
             arrows: false,
-            dots: true,
+            dots: false,
             infinite: true,
             slidesToShow: 1,
             slidesToScroll: 1,
             pauseOnFocus: false,
             autoplaySpeed: 1500,
+            fade: true,
+            cssEase: 'linear',
             responsive: [
                 {
                     breakpoint: 1001,
@@ -212,6 +229,20 @@
                 }
             ]
         });
+
+        $('.slick-prev').click(function(){ 
+            $(this).parent().find('.slick-slider').slick('slickPrev');
+        });
+    
+        $('.slick-next').click(function(e){
+            e.preventDefault(); 
+            $(this).parent().find('.slick-slider').slick('slickNext');
+        });
+
+        var related_place_num = $('.related_place_number').length;
+        if(related_place_num < 2){
+            $('.related_place_btn').hide();
+        }
     };
 
 
