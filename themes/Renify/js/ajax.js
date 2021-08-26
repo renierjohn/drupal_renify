@@ -150,129 +150,15 @@
     });
   });
 
-
-  // $('.register').bind('click', function(e) {
-  //    const token = grecaptcha.getResponse();
-  //    $('input[name=captcha]').val(token);
-  // });
-
-
-  //   var email = $('#register-email').val();
-  //   var token;
-  //   // var token = $('.g-recaptcha').val();
-  //   if(grecaptcha){
-  //      token = grecaptcha.getResponse();
-  //   }
-  //   console.log('email  :  ' + email  + '| token : ' + token);
-  //   var data = JSON.stringify({email:email,token:token});
-  //   var register_form = `<div id="mc-form" class="group" novalidate="true" >
-  //                         <input
-  //                           type="email"
-  //                           value=""
-  //                           name="EMAIL"
-  //                           class="email"
-  //                           id="register-email"
-  //                           placeholder="Email Address"
-  //                           disabled="TRUE"
-  //                         />
-  //                         <div class="submit-wrapper">
-  //                           <svg viewBox="0 0 16 16" fill="none" class="m-3" width="32" height="32">
-  //                           <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke"></circle>
-  //                           <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke">
-  //                             <animateTransform attributeName="transform" type="rotate" from="0 8 8" to="360 8 8" dur="1s" repeatCount="indefinite"></animateTransform>
-  //                           </path>
-  //                           </svg>
-  //                         </div>
-  //                         <label for="mc-email" class="subscribe-message"></label>
-  //                       </div>`;
-  //   var register_form_success = `
-  //                         <div class="submit-wrapper">
-  //                         <input class="register" type="submit" name="subscribe" value="Success"/>
-  //                       </div>`;
-  //   var register_form_failed = `
-  //                         <div class="submit-wrapper">
-  //                         <input class="register" type="submit" name="subscribe" value="FAILED"/>
-  //                       </div>`;
-  //   $('.register-form-wrapper').children().remove();
-  //   $('.register-form-wrapper').append(register_form);
-  //
-  //   $.ajax({
-  //     'url' : '/api/register' ,
-  //     'type': 'POST',
-  //     'data': data,
-  //     'success' : function(data) {
-  //       if(data.status == 'OK'){
-  //         console.log('ok');
-  //         $('.submit-wrapper').children().remove();
-  //         $('.submit-wrapper').append(register_form_success);
-  //         window.location.href = '/confirm';
-  //       }
-  //       if(data.status == 'NG'){
-  //         alert(data.message);
-  //         $('.submit-wrapper').children().remove();
-  //         $('.submit-wrapper').append(register_form_failed);
-  //         window.location.href = '/login';
-  //       }
-  //     }
-  //   });
-  //
-  // });
-
-  // $('.user-login').bind('click', function(e) {
-  //   var username = $('#InputEmail').val();
-  //   var hash = $('#InputPassword').val();
-  //   var token = "";
-  //   try {
-  //     token = grecaptcha.getResponse();
-  //   } catch (e) {
-  //     token = "";
-  //   }
-  //   console.log('login  :  ' + username + '  ' + hash);
-  //   var data = JSON.stringify({username:username,hash:hash,token:token});
-  //   var loader = `
-  //   <div class="submit-wrapper">
-  //       <button type="submit" class="btn btn--stroke full-width user-login"><svg viewBox="0 0 16 16" fill="none" class="m-3" width="32" height="32">
-  //     <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-opacity="0.25" stroke-width="2" vector-effect="non-scaling-stroke"></circle>
-  //     <path d="M15 8a7.002 7.002 0 00-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke">
-  //       <animateTransform attributeName="transform" type="rotate" from="0 8 8" to="360 8 8" dur="1s" repeatCount="indefinite"></animateTransform>
-  //     </path>
-  //     </svg></button>
-  //       <hr>
-  //       <a href="#." class="btn btn--stroke full-width" id="login-google" target="blank"><i class="fab fa-google"></i> Login w/ Google</a>
-  //       <a href="#." class="btn btn--stroke full-width" id="login-facebook"><i class="fab fa-facebook"></i> Login w/ Facebook</a>
-  // </div>
-  //   `;
-  //   $('.submit-wrapper').children().remove();
-  //   $('.submit-wrapper').append(loader);
-  //
-  //   $.ajax({
-  //     'url' : '/api/login' ,
-  //     'type': 'POST',
-  //     'data': data,
-  //     'success' : function(data) {
-  //       if(data.status == 'OK'){
-  //         $('.submit-wrapper').children().remove();
-  //         $('.submit-wrapper').append('<button type="submit" class="btn hvr-hover user-login" style="background: green;">'+data.message+'</button>');
-  //         location.reload();
-  //       }
-  //       else{
-  //         alert(data.message);
-  //         $('.submit-wrapper').children().remove();
-  //         $('.submit-wrapper').append('<button type="submit" class="btn hvr-hover user-login">'+data.message+'</button>');
-  //         location.reload();
-  //       }
-  //     }
-  //   });
-  // });
-
   $('.share-fb').on('click', function(e) {
       var pageid = $(this).attr('data-pageid');
-      // var id     = $(this).attr('data-id');
       var title  = $(this).attr('data-title');
       var u = location.href;
       var t = document.title;
-      // window.open('http://www.facebook.com/sharer.php?u=https://renify.store'+pageid+'/'+id+'&t='+title,'sharer','toolbar=0,status=0,width=626,height=436');
-      // return false;
+      
+      if(title.length == 0){
+          title = 'Renify'
+      }
 
       $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
         FB.init({
@@ -297,17 +183,18 @@
 
     $('.share-twitter').on('click', function(e) {
         var pageid = $(this).attr('data-pageid');
-        // var id     = $(this).attr('data-id');
         var title  = $(this).attr('data-title');
         var u = location.href;
         var t = document.title;
+        if(title.length == 0){
+          title = 'Renify'
+        }
         window.open('http://www.twitter.com/share?url=https://renify.store'+pageid+'&t='+title,'sharer','toolbar=0,status=0,width=626,height=436');
         return false;
     });
 
     $('.share-insta').on('click', function(e) {
         var pageid = $(this).attr('data-pageid');
-        // var id     = $(this).attr('data-id');
         var title  = $(this).attr('data-title');
         var u = location.href;
         var t = document.title;
@@ -315,35 +202,20 @@
         return false;
     });
 
-  // $('.lazy').Lazy({
-  //       scrollDirection: 'vertical',
-  //       effect: 'fadeIn',
-  //       visibleOnly: true,
-  //       onError: function(element) {
-  //           console.log('error loading ' + element.data('src'));
-  //       }
-  //   });
-    // $('.grid').isotope({
-    //   // options
-    //
-    //   layoutMode: 'fitRows'
-    // });
+    $('#login-facebook').on('click',function(e){
+        FB.login();
+    });
 
-
-      $('#login-facebook').on('click',function(e){
-          FB.login();
-      });
-
-      var scope         = "https://www.googleapis.com/auth/userinfo.email";
-      var scope_nolink  = "openid profile email";
-      var clientID      = "902176944767-2ul1lh81t998833bmnsjah6sg2k9e9p2.apps.googleusercontent.com";
-      var redirect_url  = "https://renify.store/google";
-      var map_id = "8ebbb0159f03160b";
-      var state  = "12345678987654321";
-      var promt  = "select_account";
-      var response_type = 'code';
-      $('#login-google').on('click',function(e){
-          window.open('https://accounts.google.com/o/oauth2/v2/auth?client_id='+clientID+'&redirect_uri='+redirect_url+'&state='+state+'&prompt='+promt+'&response_type='+response_type+'&include_granted_scopes=true&scope='+scope);
-      });
+    var scope         = "https://www.googleapis.com/auth/userinfo.email";
+    var scope_nolink  = "openid profile email";
+    var clientID      = "902176944767-2ul1lh81t998833bmnsjah6sg2k9e9p2.apps.googleusercontent.com";
+    var redirect_url  = "https://renify.store/google";
+    var map_id = "8ebbb0159f03160b";
+    var state  = "12345678987654321";
+    var promt  = "select_account";
+    var response_type = 'code';
+    $('#login-google').on('click',function(e){
+        window.open('https://accounts.google.com/o/oauth2/v2/auth?client_id='+clientID+'&redirect_uri='+redirect_url+'&state='+state+'&prompt='+promt+'&response_type='+response_type+'&include_granted_scopes=true&scope='+scope);
+    });
 
 }(jQuery));
