@@ -37,9 +37,11 @@ function renify_preprocess_node(&$variables){
   $nid    = $node->id();
   $bundle = $node->bundle();
   
-  if($bundle == 'messages' || $bundle == 'config'){
-    $response = new RedirectResponse('/404');
-    return $response->send();
+  if($bundle == 'messages' || $bundle == 'config' ){
+    if (\Drupal::currentUser()->id() != 1) {
+      $response = new RedirectResponse('/404');
+      return $response->send();
+    }
   }
   
   $result = \Drupal::service('data_router.aliases_path')->setID($nid)->getContentPagination();
