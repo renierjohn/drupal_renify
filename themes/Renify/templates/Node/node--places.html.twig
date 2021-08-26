@@ -41,6 +41,24 @@
   <div class="wrapper">
     <div class="inner">
       <h3 class="major"><h5 style="display:inline-block;">Posted : </h5> <i>{{ date }}</i> </h3>
+       <div class="content-social">
+        <ul>
+          <li>
+            <a href="#." class="share-fb" data-pageid="{{url}}" data-id="" data-title="{{title}}"
+              ><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+          </li>
+          <li>
+            <a href="#." class="share-twitter" data-pageid="{{url}}" data-id="" data-title="{{title}}">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#." class="share-insta" data-pageid="{{url}}" data-title="{{title}}">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
       <div>
           {{ description|raw }}
       </div>
@@ -48,17 +66,17 @@
     <div class="content-social">
       <ul>
         <li>
-          <a href="#." class="share-fb" data-pageid="" data-id="" data-title=""
+          <a href="#." class="share-fb" data-pageid="{{url}}" data-id="" data-title="{{title}}"
             ><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
         </li>
         <li>
-          <a href="#." class="share-twitter" data-pageid="" data-id="" data-title="">
+          <a href="#." class="share-twitter" data-pageid="{{url}}" data-id="" data-title="{{title}}">
             <i class="fab fa-twitter" aria-hidden="true"></i>
           </a>
         </li>
         <li>
-          <a href="#0"
-            ><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="#." class="share-insta" data-pageid="{{url}}" data-title="{{title}}">
+            <i class="fab fa-instagram" aria-hidden="true"></i></a>
         </li>
       </ul>
     </div>

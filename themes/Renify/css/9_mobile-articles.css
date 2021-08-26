@@ -118,8 +118,13 @@
       padding: 0 0 1rem 0;
     }
 
-    #col-1r , #message-form{
+    #col-1r {
       padding: 1rem 2rem;
+    }
+    
+    #message-form{
+      padding-left: 3rem;
+      padding-right: 1rem;
     }
 
     .pull-quote blockquote p{

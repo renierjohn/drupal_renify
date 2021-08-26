@@ -304,6 +304,17 @@
         window.open('http://www.twitter.com/share?url=https://renify.store'+pageid+'&t='+title,'sharer','toolbar=0,status=0,width=626,height=436');
         return false;
     });
+
+    $('.share-insta').on('click', function(e) {
+        var pageid = $(this).attr('data-pageid');
+        // var id     = $(this).attr('data-id');
+        var title  = $(this).attr('data-title');
+        var u = location.href;
+        var t = document.title;
+        window.open("https://www.instagram.com/renify_renier", "_blank", "location=yes");
+        return false;
+    });
+
   // $('.lazy').Lazy({
   //       scrollDirection: 'vertical',
   //       effect: 'fadeIn',
