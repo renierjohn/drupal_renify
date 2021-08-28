@@ -18,10 +18,6 @@ class AccountService
 
   protected $mailer;
 
-  const SITE_KEY      = '6Lfb3x8aAAAAAIjkOLxlY7eymxuG85hQJoJUG99I';
-
-  const SECRET_KEY    = '6Lfb3x8aAAAAAH5NnfO5kxLL_WDsp8dysd1WTTff';
-
   const DEFAULT_PASS  = 'abcd1234';
 
   const PATTERN_LINK = '{{link}}';
@@ -29,6 +25,8 @@ class AccountService
   const PATTERN_MAIL  = '{{mail}}';
 
   const PATTERN_NAME  = '{{name}}';
+
+  const CONFIGS_PATH  = 'private://auth/config.json';
 
   public function __construct(EntityTypeManager $entityTypeManager,MailService $mailer){
     $this->entityTypeManager = $entityTypeManager;
@@ -51,16 +49,24 @@ class AccountService
   }
 
   public function getCapchaSiteKey(){
-    return self::SITE_KEY;
+     $configs = file_get_contents(self::CONFIGS_PATH);
+     $configs = json_decode($configs,TRUE);
+     return $configs['SITE_KEY'];
   }
 
   public function getCapchaSecretKey(){
-    return self::SECRET_KEY;
+     $configs = file_get_contents(self::CONFIGS_PATH);
+     $configs = json_decode($configs,TRUE);
+     return $configs['SECRET_KEY'];
   }
 
   public function checkCaptcha(){
+    
+    $configs = file_get_contents(self::CONFIGS_PATH);
+    $configs = json_decode($configs,TRUE);
+
     $token       = $this->token;
-    $secret_key  = self::SECRET_KEY;
+    $secret_key  = $configs['SECRET_KEY'];
     $response    = \Drupal::httpClient()->post('https://www.google.com/recaptcha/api/siteverify?secret='.$secret_key.'&response='.$token,[]);
     $data        = $response->getBody()->getContents();
     $data        = json_decode($data,TRUE);
